@@ -1,24 +1,26 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Recupera los datos del formulario
     $nombre = $_POST["nombre"];
     $apellido = $_POST["apellido"];
-    $correo = $_POST["correo"];
-    $contrasena = $_POST["contrasena"];
-    $confirmarContrasena = $_POST["confirmar_contrasena"];
+    $email = $_POST["correo"];
+    $contraseña = $_POST["contrasena"];
 
-    // Validar datos aquí...
+    // Realiza el procesamiento necesario, como almacenar en una base de datos
 
-    // Enviar correo de confirmación (necesitarás configurar un servidor de correo o usar un servicio de envío de correo)
-    $asunto = "Confirmación de Registro en Paid Taxi";
-    $mensaje = "¡Gracias por registrarte en Paid Taxi, $nombre $apellido! Tu registro ha sido confirmado.";
+    // Envia el correo de confirmación
+    $to = $email;
+    $subject = "Confirmación de Registro";
+    $message = "Gracias por registrarte, $nombre $apellido. Tu registro ha sido confirmado.";
+    $headers = "From: tu@email.com";
 
-    // Ajusta la siguiente línea para configurar el remitente y el encabezado del correo
-    mail($correo, $asunto, $mensaje, 'From: tu@email.com');
+    mail($to, $subject, $message, $headers);
 
-    // Puedes redirigir a una página de confirmación después de enviar el correo
-    header("Location: confirmacion_registro.html");
-    exit;
+    // Redirige a la página3.html
+    header("Location: pagina3.html");
+    exit();
 }
 ?>
+
 
 
