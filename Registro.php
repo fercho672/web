@@ -26,6 +26,16 @@
                     console.log("Error al enviar el correo", error);
                 });
         }
+
+        // Función para manejar la respuesta después de enviar el formulario
+        function manejarRespuesta(response) {
+            if (response.result === "success") {
+                alert("¡Registro exitoso! Se ha enviado un correo de confirmación.");
+                // Redirige o realiza otras acciones según tus necesidades
+            } else {
+                alert("Error al registrar el usuario o enviar el correo de confirmación.");
+            }
+        }
     </script>
     <title>Paid Taxi</title>
 </head>
