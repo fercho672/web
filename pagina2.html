@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="estilo.css">
+    <link rel="icon" href="icono3.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Rock+Salt&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <script>
+        function validarFormulario() {
+            var nombre = document.getElementById("nombre").value;
+            var apellido = document.getElementById("apellido").value;
+            var email = document.getElementById("correo").value;
+            var contraseña = document.getElementById("contrasena").value;
+            var confirmarContraseña = document.getElementById("confirmar_contrasena").value;
+
+            if (nombre === "" || apellido === "" || email === "" || contraseña === "" || confirmarContraseña === "") {
+                alert("Todos los campos son obligatorios. Por favor, complete todos los campos.");
+                return false;
+            }
+        }
+    </script>
+    <title>Paid Taxi</title>
+</head>
+<body>
+    <div>
+        <h1>Paid Taxi</h1>
+    </div>
+
+    <div id="contenedor">
+        <img src="icono3.png" alt="Descripción de la imagen" id="imagen-perfil">
+        <div id="formulario">
+            <h1>Ingrese Sus Datos</h1>
+            <form method="post" action="procesar_registro.php" onsubmit="return validarFormulario()">
+                <div class="campo">
+                    <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+                </div>
+                <div class="campo">
+                    <input type="text" name="apellido" id="apellido" placeholder="Apellido">
+                </div>
+                <div class="campo">
+                    <input type="email" name="correo" id="correo" placeholder="Correo Electrónico">
+                </div>
+                <div class="campo">
+                    <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña">
+                </div>
+                <div class="campo">
+                    <input type="password" name="confirmar_contrasena" id="confirmar_contrasena" placeholder="Confirmar Contraseña">
+                </div>
+                <button type="submit">Registrarse</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+

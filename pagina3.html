@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="estilo.css">
+    <link rel="icon" href="icono3.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Rock+Salt&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos CSS existentes */
+    </style>
+    <script>
+        let map;
+        let meterStarted = false;
+        let startPosition;
+        let distanceTraveled = 0;
+        const valorFijo = 10000; // Valor fijo de 10,000
+        const porcentajeCargoPorKilometro = 0.05;
+
+        function iniciarMap() {
+            var mapOptions = {
+                center: { lat: 40.712776, lng: -74.005974 },
+                zoom: 14,
+            };
+            map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+            map.addListener("click", function (e) {
+                if (!meterStarted) {
+                    startPosition = e.latLng;
+                    meterStarted = true;
+                } else {
+                    const endPosition = e.latLng;
+                    const distance = google.maps.geometry.spherical.computeDistanceBetween(startPosition, endPosition);
+                    distanceTraveled += distance;
+                    const cargoPorKilometro = distanceTraveled / 1000 * valorFijo * porcentajeCargoPorKilometro;
+                    document.getElementById("valor-cargo").value = `${cargoPorKilometro.toFixed(2)} COP`;
+                    const total = (distanceTraveled / 1000) * valorFijo + cargoPorKilometro;
+                    document.getElementById("total").value = `${total.toFixed(2)} COP`;
+                    startPosition = endPosition;
+                }
+            });
+        }
+    </script>
+    <title>Paid Taxi</title>
+</head>
+<body>
+    <div>
+        <button class="menu-button" onclick="toggleMenu()">
+            <img src="menu2.png" alt="Menú">
+        </button>
+        <div class="menu-options hidden">
+            <ul>
+                <!-- Puedes agregar otros elementos de menú si lo deseas -->
+                <li><a href="https://ui.pse.com.co/ui/"><i class="fas fa-exchange-alt"></i> Transferencia PSE</a></li>
+                <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+            </ul>
+        </div>
+        
+        <h1>Paid Taxi</h1>
+    </div>
+
+    <div id="map"></div>
+
+    <div id="casillas-pago">
+        <input type="text" id="valor-fijo" value="10,000 COP" readonly>
+        <input type="text" id="valor-cargo" placeholder="Valor del cargo" readonly>
+        <input type="text" id="total" placeholder="Total" readonly>
+        <button id="boton-pagar" onclick="realizarPago()">Pagar</button>
+    </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap" async defer></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
